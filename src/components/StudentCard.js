@@ -1,4 +1,3 @@
-// COLOCAR NA PASTA DE COMPONENTE E NAO NA OUTRA
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import StudentModal from './StudentModal';
@@ -15,8 +14,9 @@ const StudentCard = ({ student }) => {
       <TouchableOpacity style={styles.card} onPress={toggleModal}>
         <Image source={{ uri: student.picture.thumbnail }} style={styles.thumbnail} />
         <View style={styles.info}>
-          <Text style={styles.name}>{`${student.name.first} ${student.name.last}`}</Text>
-          <Text>{student.email}</Text>
+          <Text style={styles.name}>{`${student.name.title} ${student.name.first} ${student.name.last}`}</Text>
+          <Text>{student.gender}</Text>
+          <Text>{new Date(student.dob.date).toLocaleDateString()}</Text>
         </View>
       </TouchableOpacity>
       <StudentModal
@@ -34,11 +34,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+    alignItems: 'center',
   },
   thumbnail: {
     width: 50,
     height: 50,
     borderRadius: 25,
+    backgroundColor: '#eee',
   },
   info: {
     marginLeft: 10,
